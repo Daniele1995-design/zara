@@ -3,17 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <title>La mia Web App</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+    button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+    #risposta { margin-top: 20px; font-weight: bold; color: green; }
+  </style>
 </head>
 <body>
   <h1>Benvenuto!</h1>
   <button onclick="chiamaAppsScript()">Clicca qui</button>
+  <div id="risposta"></div>
 
   <script>
     async function chiamaAppsScript() {
       const url = "https://script.google.com/macros/s/AKfycbzOi05O-d9WiH2RTg8HEzaBW1IioW2Vp7XJxK_w6fhADrGd_-4QoeNbjWE3_4NWXRNSxQ/exec";
-      const response = await fetch(url);
-      const text = await response.text();
-      alert("Risposta da Apps Script: " + text);
+      try {
+        const response = await fetch(url);
+        const text = await response.text();
+        document.getElementById("risposta").textContent = "Risposta da Apps Script: " + text;
+      } catch (error) {
+        document.getElementById("risposta").textContent = "Errore: impossibile raggiungere la web app";
+        console.error(error);
+      }
     }
   </script>
 </body>
