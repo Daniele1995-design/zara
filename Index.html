@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>La mia Web App</title>
+</head>
+<body>
+  <h1>Benvenuto!</h1>
+  <button onclick="chiamaAppsScript()">Clicca qui</button>
+
+  <script>
+    async function chiamaAppsScript() {
+      const url = "https://script.google.com/macros/s/AKfycbzOi05O-d9WiH2RTg8HEzaBW1IioW2Vp7XJxK_w6fhADrGd_-4QoeNbjWE3_4NWXRNSxQ/exec";
+      const response = await fetch(url);
+      const text = await response.text();
+      alert("Risposta da Apps Script: " + text);
+    }
+  </script>
+</body>
+</html>
